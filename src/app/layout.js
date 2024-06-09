@@ -6,9 +6,12 @@ export const metadata = {
   description: 'Your app description here',
 };
 
- function RootLayout({ children }) {
+function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.png" type="image/png" />
+      </head>
       <body>
         {/* <Navbar /> */}
         {children}
@@ -16,4 +19,5 @@ export const metadata = {
     </html>
   );
 }
+
 export default RootLayout;
