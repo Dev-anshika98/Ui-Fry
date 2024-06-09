@@ -1,16 +1,19 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
-import {useState,useRef,useEffect} from "react";
+import { useState, useRef, useEffect } from "react";
 import { HashLink } from 'react-router-hash-link';
-import {
-  BrowserRouter as Router
-} from "react-router-dom";
+import dynamic from 'next/dynamic';
+
+// Ensure Router is only imported on the client-side
+const Router = dynamic(() => import('react-router-dom').then(mod => mod.BrowserRouter), { ssr: false });
+
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
   const lastScrollY = useRef(0);
   const [scrollDirection, setScrollDirection] = useState("up");
 
   useEffect(() => {
-      const onScroll = () => {
+    const onScroll = () => {
+      if (typeof window !== "undefined") {
         const currentScrollY = window.scrollY;
         if (currentScrollY > lastScrollY.current) {
           setScrollDirection("down");
@@ -20,31 +23,43 @@ const NavBar = () => {
         lastScrollY.current = currentScrollY;
   
         setScrolled(currentScrollY > 50);
-      };
-  
+      }
+    };
+
+    if (typeof window !== "undefined") {
       window.addEventListener("scroll", onScroll);
+    }
   
-      return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("scroll", onScroll);
+      }
+    };
   }, []);
 
   useEffect(() => {
-      const onScroll = () => {
-        if (window.scrollY > 50) {
-          setScrolled(true);
-        } else {
-          setScrolled(false);
-        }
-        
+    const onScroll = () => {
+      if (typeof window !== "undefined" && window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
       }
+    };
   
+    if (typeof window !== "undefined") {
       window.addEventListener("scroll", onScroll);
+    }
   
-      return () => window.removeEventListener("scroll", onScroll);
-  }, [])
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("scroll", onScroll);
+      }
+    };
+  }, []);
 
   return (
     <Router>
-      <Navbar expand="md" className="navbar" style={{display: scrollDirection === "down" ? "none" : "flex"}}>
+      <Navbar expand="md" className="navbar" style={{ display: scrollDirection === "down" ? "none" : "flex" }}>
         <Container className={"desktop-navigation " + (scrolled ? "scrolled" : "")} style={{ paddingTop: "10px", zIndex: "9999" }}>
           <Navbar.Brand href="/">
               <svg width="107" height="35" viewBox="0 0 107 35" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,27 +73,22 @@ const NavBar = () => {
               </svg>
               
           </Navbar.Brand>
-          <Nav className="ms-auto" style={{display:"flex"}}>
+          <Nav className="ms-auto" style={{ display: "flex" }}>
             <div className="navigation-link">
-              <span className="<home" style={{color:"#FF5555",fontFamily:"Clash Display",fontWeight:"700"}}><HashLink to='#connect'>Home</HashLink></span>
-              <span ><HashLink to='#features'>Features</HashLink></span>
-              <span ><HashLink to='#testomonial'>About Us</HashLink></span>
-              <span ><HashLink to='#faq-section'>Pricing</HashLink></span>
-
+              <span className="<home" style={{ color: "#FF5555", fontFamily: "Clash Display", fontWeight: "700" }}><HashLink to='#connect'>Home</HashLink></span>
+              <span><HashLink to='#features'>Features</HashLink></span>
+              <span><HashLink to='#testomonial'>About Us</HashLink></span>
+              <span><HashLink to='#faq-section'>Pricing</HashLink></span>
             </div>
 
             <div className="button">
-                <button className={"btn-submit " + (scrolled ? "scrolled" : "")}>Download</button>
+              <button className={"btn-submit " + (scrolled ? "scrolled" : "")}>Download</button>
             </div>
-
-            
-      
           </Nav>
-              
-              
         </Container>
       </Navbar>
     </Router>
-  )
-}
+  );
+};
+
 export default NavBar;
