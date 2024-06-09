@@ -7,14 +7,14 @@ import UserSvg from "../assets/img/testimonial/user.svg";
 import UserSecSvg from "../assets/img/testimonial/user-sec.svg";
 const Testomonial = () => {
     return (
-        <section className="testomonial" id="testomonial">
-            <div className="testominal-heading">
+        <section className="testomonial" data-aos="fade-in" id="testomonial">
+            <div className="testominal-heading"  data-aos="fade-up">
                 <h1 style={{color:"black"}}>TESTIMONIAL</h1>
             </div>
-            <div className="testimonial-subheading">
+            <div className="testimonial-subheading"  data-aos="fade-up" data-aos-delay="200" >
                 <h1 style={{color:"black",marginTop:"3%"}}>What Our Users Say About Us?</h1>
             </div>
-            <div className="testimonal-bx">
+            <div className="testimonal-bx"  data-aos="fade-up" data-aos-delay="400">
 
                 <div className="testimonial-img-bulk">
                     <div className="back-glow">

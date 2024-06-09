@@ -8,7 +8,7 @@ const Footer = () => {
     return (
 
 
-        <footer style={{background:"white",width:"80%",marginLeft:"12%",marginTop:"10%"}} className="footer dark:bg-gray-900">
+        <footer style={{background:"white",width:"80%",marginLeft:"12%",marginTop:"10%"}} className="footer dark:bg-gray-900" data-aos="fade-up">
             <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
                 <div className="md:flex md:justify-between">
                     <div className="mt-3 mb-6 md:mb-0">

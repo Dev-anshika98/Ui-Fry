@@ -5,17 +5,18 @@ import Back from "../assets/img/banner/back.svg"
 import Tape from "../assets/img/banner/tape.svg"
 import Iphone from "../assets/img/banner/iphone.svg"
 import Arrow from "../assets/img/banner/arrow.svg"
+
 const Banner = () => {
     return (
-        <section className="banner" id="banner">
+        <section className="banner " data-aos="fade-down" id="banner">
             <div className="heading">
                 <div className="header-info">
-                    <h1>{Data.hero.subheadline}</h1>
+                    <h1 data-aos="fade-up">{Data.hero.subheadline}</h1>
                     <Image className="back-img" src={Back} alt="backimg" />
                 </div>
-                <p>Cum et convallis risus placerat aliquam, nunc. Scelerisque aliquet faucibus tincidunt eu adipiscing sociis arcu lorem porttitor.</p>
+                <p data-aos="fade-up">Cum et convallis risus placerat aliquam, nunc. Scelerisque aliquet faucibus tincidunt eu adipiscing sociis arcu lorem porttitor.</p>
                 <div className="banner-btn-grp">
-                    <button className="btn">Get Started <span><Image style={{ marginLeft: "10px" }} src={Arrow} alt="arrow" width={24} height={24} /></span> </button>
+                    <button  data-aos="fade-up" data-aos-delay="400" className="btn">Get Started <span><Image style={{ marginLeft: "10px" }} src={Arrow} alt="arrow" width={24} height={24} /></span> </button>
 
                     <div className="watch-video">
                         <svg className="icon" width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,12 +28,12 @@ const Banner = () => {
                 </div>
             </div>
 
-            <div className="tape-img">
-                <Image src={Tape} alt="tape-img" width={100} height={100} />
+            <div className="tape-img" data-aos="fade-up">
+                <Image src={Tape} data-aos="fade-down" alt="tape-img" width={100} height={100} />
             </div>
 
-            <div className="img">
-                <Image src={Iphone} alt="banner-img1" width={300} height={600} />
+            <div className="img" data-aos="fade-up">
+                <Image src={Iphone} data-aos="fade-up" alt="banner-img1" width={300} height={600} />
             </div>
         </section>
     )
